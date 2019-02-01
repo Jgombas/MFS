@@ -1,0 +1,19 @@
+{% extends "MFS/base.html" %}
+
+{% block content %}
+    {% if form.errors %}
+    <br />
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <br />
+    <br />
+    <form method="post" action="{% url 'login' %}">
+         {{ form.as_p }}
+        {% csrf_token %}
+
+
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <a href="{% url 'password_reset' %}">Forgot your Password?</a>
+    </form>
+{% endblock %}
